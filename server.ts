@@ -1,8 +1,6 @@
 
-const express=require('express');
 const returnFlight=require('./returnFlight');
 let {db} = require('./firebase/firebase')
-const app=express()
 
 function runqueries(){
 
