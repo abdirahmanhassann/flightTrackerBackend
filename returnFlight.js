@@ -38,14 +38,11 @@ class Run {
            console.log('currency has just been found')
            await new Promise(resolve => setTimeout(resolve, 25000));
            console.log('5 secs after currency was found')
-<<<<<<< HEAD
            if(currency[0])
            {
 
            dateTo=swap(dateTo)
            dateFrom=swap(dateFrom)
-=======
->>>>>>> 8f08a9372e9bf3e75e3386accfcb3063c3b7da50
             await currency[0].scrollIntoView();
                         await new Promise(resolve => setTimeout(resolve, 5000));
             await currency[0].click();
