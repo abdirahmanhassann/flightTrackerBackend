@@ -15,7 +15,6 @@ class Run {
             return swappedDateStr;
         }
         const browser = await puppeteer.launch({
-            headless: false,
             args: [
                 "--disable-setuid-sandbox",
                 "--no-sandbox",
@@ -27,7 +26,7 @@ class Run {
                 : puppeteer.executablePath(),
         });
         const page = await browser.newPage();
-        await page.goto('https://www.google.com/travel/flights');
+        await page.goto('https://www.google.us/travel/flights');
         try {
             const closeButton = await page.$('button[aria-label="Close"]');
             if (closeButton) {
@@ -39,7 +38,7 @@ class Run {
             await new Promise(resolve => setTimeout(resolve, 2000));
             const modal = await page.$x('//*[@id="yDmH0d"]/div[5]/div[1]/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/div');
             if (await modal.length > 0) {
-                const gbpElement = await modal[0].$x('.//*[contains(text(), "British Pound")]');
+                const gbpElement = await modal[0].$x('.//*[contains(text(), "GBP")]');
                 if (await gbpElement.length > 0) {
                     await gbpElement[0].scrollIntoView();
                     await gbpElement[0].click();
@@ -110,15 +109,15 @@ class Run {
                 await page.keyboard.press('Enter');
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 await page.keyboard.press('Enter');
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 const date2 = await page.$x('//*[@id="ow75"]/div[1]/div/div/div[1]/div/div[2]/div/input');
                 await date2[0].click();
                 await page.keyboard.type(swap(dateFrom).replace(/-/g, "/"));
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 await page.keyboard.press('Enter');
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 await page.keyboard.press('Enter');
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
             }
             const submitButton = await page.$x('//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div[1]/c-wiz/div[2]/div[1]/div[1]/div[2]/div/button');
             await submitButton[0].click();
