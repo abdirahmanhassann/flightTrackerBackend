@@ -36,14 +36,18 @@ class Run {
             console.log('on the website');
             const currency = await page.$x('//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div[1]/c-wiz/div[2]/div[3]/c-wiz/footer/div[1]/c-wiz/button[3]');
            console.log('currency has just been found')
-           await new Promise(resolve => setTimeout(resolve, 5000));
+           await new Promise(resolve => setTimeout(resolve, 25000));
            console.log('5 secs after currency was found')
+<<<<<<< HEAD
            if(currency[0])
            {
 
            dateTo=swap(dateTo)
            dateFrom=swap(dateFrom)
+=======
+>>>>>>> 8f08a9372e9bf3e75e3386accfcb3063c3b7da50
             await currency[0].scrollIntoView();
+                        await new Promise(resolve => setTimeout(resolve, 5000));
             await currency[0].click();
             await new Promise(resolve => setTimeout(resolve, 2000));
             const modal = await page.$x('//*[@id="yDmH0d"]/div[5]/div[1]/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/div');
