@@ -32,7 +32,11 @@ class Run {
             if (closeButton) {
                 await closeButton.click();
             }
+            console.log('on the website');
             const currency = await page.$x('//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div[1]/c-wiz/div[2]/div[3]/c-wiz/footer/div[1]/c-wiz/button[3]');
+           console.log('currency has just been found')
+           await new Promise(resolve => setTimeout(resolve, 5000));
+           console.log('5 secs after currency was found')
             await currency[0].scrollIntoView();
             await currency[0].click();
             await new Promise(resolve => setTimeout(resolve, 2000));
