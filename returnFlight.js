@@ -37,10 +37,8 @@ class Run {
            console.log('currency has just been found')
            await new Promise(resolve => setTimeout(resolve, 5000));
            console.log('5 secs after currency was found')
-                        await new Promise(resolve => setTimeout(resolve, 5000));
-            const currency = await page.$x('//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div[1]/c-wiz/div[2]/div[3]/c-wiz/footer/div[1]/c-wiz/button[3]');
-                        await new Promise(resolve => setTimeout(resolve, 2000));
             await currency[0].scrollIntoView();
+                        await new Promise(resolve => setTimeout(resolve, 5000));
             await currency[0].click();
             await new Promise(resolve => setTimeout(resolve, 2000));
             const modal = await page.$x('//*[@id="yDmH0d"]/div[5]/div[1]/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/div');
