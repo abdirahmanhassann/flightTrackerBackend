@@ -15,6 +15,7 @@ class Run {
             return swappedDateStr;
         }
         const browser = await puppeteer.launch({
+            headless:"new",
             args: [
                 "--disable-setuid-sandbox",
                 "--no-sandbox",
@@ -32,17 +33,16 @@ class Run {
             if (closeButton) {
                 await closeButton.click();
             }
-<<<<<<< HEAD
             console.log('on the website');
             const currency = await page.$x('//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div[1]/c-wiz/div[2]/div[3]/c-wiz/footer/div[1]/c-wiz/button[3]');
            console.log('currency has just been found')
            await new Promise(resolve => setTimeout(resolve, 5000));
            console.log('5 secs after currency was found')
-=======
-                        await new Promise(resolve => setTimeout(resolve, 5000));
-            const currency = await page.$x('//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div[1]/c-wiz/div[2]/div[3]/c-wiz/footer/div[1]/c-wiz/button[3]');
-                        await new Promise(resolve => setTimeout(resolve, 2000));
->>>>>>> e633c598f982b223737ba43e876887ca1bed2397
+           if(currency[0])
+           {
+
+           dateTo=swap(dateTo)
+           dateFrom=swap(dateFrom)
             await currency[0].scrollIntoView();
             await currency[0].click();
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -60,6 +60,7 @@ class Run {
             else {
                 console.log('Modal not found.');
             }
+        }
             // const gbp=await page.$x('//*[@id="yDmH0d"]/div[7]/div[1]/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/div/label[14]')
             // await gbp[0].scrollIntoView()
             // await gbp[0].click();
