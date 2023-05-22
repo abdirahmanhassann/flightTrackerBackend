@@ -15,7 +15,7 @@ class Run {
             return swappedDateStr;
         }
         const browser = await puppeteer.launch({
-            headless:"new",
+            headless:true,
             args: [
                 "--disable-setuid-sandbox",
                 "--no-sandbox",
