@@ -2,8 +2,6 @@
 /// <reference types="node" />
 /// <reference types="puppeteer" />
 
-import { pathToFileURL } from "url";
-
 const puppeteer = require('puppeteer');
 const nodemailer = require("nodemailer");
  require('dotenv').config()
