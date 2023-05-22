@@ -1,12 +1,9 @@
 
-const returnFlight=require('./returnFlight');
+const  run=require('./returnFlight.ts');
 let {db} = require('./firebase/firebase')
-
-function runqueries(){
-
-   const newfligh= new returnFlight();
-  // newfligh.returnFlight('lisbon','london')
-}
+const express= require('express')
+const app=express()
+require('dotenv').config()
 
 async function fb(){
    const document = await db.collection('users').get();
@@ -19,7 +16,7 @@ console.log(g)
    if (item.queries) {
      for (const element of item.queries) {
        if (element.from && element.to) {
-         let newflight = new returnFlight();
+         let newflight = new run();
         let budget;
     
         while(!budget){
@@ -40,9 +37,15 @@ console.log(g)
    }
  }
 }
-fb()
 
-// app.listen(5000,()=>{
+app.get("/", async (req:any, res:any) => {
+  
+  await fb();
+  res.send("Render Puppeteer server is finished!");
+});
 
-//    console.log('app is listening on port 5000....')
-// })
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});

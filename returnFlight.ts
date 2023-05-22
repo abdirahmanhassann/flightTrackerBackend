@@ -8,7 +8,6 @@ const puppeteer = require('puppeteer');
 const nodemailer = require("nodemailer");
  require('dotenv').config()
 
-const fs=require('fs/promises')
 
 interface Flight {
 origin?: string;
@@ -46,8 +45,21 @@ email?:string;
         const swappedDateStr = `${month}-${day}-${year}`;
         return swappedDateStr;
  }
-    const browser = await puppeteer.launch({headless:false});
-    const page = await browser.newPage();
+ const browser = await puppeteer.launch({
+  headless:false,
+  args: [
+    "--disable-setuid-sandbox",
+    "--no-sandbox",
+    "--single-process",
+    "--no-zygote",
+  ],
+  executablePath:
+    process.env.NODE_ENV === "production"
+      ? process.env.PUPPETEER_EXECUTABLE_PATH
+      : puppeteer.executablePath(),
+});
+
+const page = await browser.newPage();
     await page.goto('https://www.google.com/travel/flights');
     try
 {
@@ -164,8 +176,6 @@ const flightss = await flight[0].$$('li');
 console.log('evaluate method is about to run') 
 
         console.log('working so far....');
-const file=await fs.open('flightdata.txt','w');
-const stream = await file.createWriteStream();
 const arrayofflights:Flight[] | undefined=[];
 
 for (const i of flightss) {
@@ -260,8 +270,6 @@ else{
 console.log('email has been sent');
   }
 }
-await stream.end();
-await file.close();
 await browser.close();
 
 return arrayofflights;
