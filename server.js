@@ -22,12 +22,14 @@ async function fb() {
                             .returnFlight(element.from.trim(), element.to.trim(), element.budget, item.id, element.type, element.dateFrom, element.dateTo);
                     }
                 }
+                console.log('End of all queries.')
             }
         }
     }
 }
+fb();
 app.get("/", async (req, res) => {
-    await fb();
+//    await fb();
     res.send("Render Puppeteer server is finished!");
 });
 const PORT = process.env.PORT || 4000;
